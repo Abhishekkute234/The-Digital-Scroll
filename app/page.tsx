@@ -10,7 +10,7 @@ import Subheading from "@/components/Subheading";
 import { Suspense } from "react";
 
 export const metadata = {
-  title: "Fyrre Magazine | Art & Life | Home",
+  title: "Digital scroll| Art & Life | Home",
   description: "Articles, podcasts and news from the Berlin cultural scene",
 };
 
