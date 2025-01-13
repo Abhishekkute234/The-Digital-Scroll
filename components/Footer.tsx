@@ -1,11 +1,11 @@
 "use client";
 
 import NewsletterTicker from "./NewsletterTicker";
-import { Input } from "@/components/ui/input";
-import { Button } from "./ui/button";
+
 import Link from "next/link";
 import FooterSocialLinks from "./FooterSocialsLinks";
-import NewsletterSignUp from "./NewsletterSignUp";
+import Contactusform from "./Contactus";
+import { HoverBorderGradient } from "./ui/hover-border-gradient";
 
 export default function Footer() {
   return (
@@ -16,14 +16,13 @@ export default function Footer() {
           <h2 className="uppercase text-footer-title">
             Design news to your inbox
           </h2>
-          <div className="flex flex-wrap lg:justify-end gap-3">
-            <NewsletterSignUp
-              formClassName="flex flex-col gap-4 max-w-[28rem] w-full"
-              formFieldsClassName="flex flex-wrap gap-3"
-              inputClassName="max-w-[20rem]"
-              buttonClassName="bg-white text-black hover:text-white"
-            />
-          </div>
+          <HoverBorderGradient
+            containerClassName="rounded-full"
+            as="button"
+            className="flex flex-col items-center justify-center bg-black font-bold text-white dark:bg-black dark:text-white"
+          >
+            <Contactusform />
+          </HoverBorderGradient>
         </div>
         <div className="flex flex-col md:flex-row flex-wrap lg:justify-between gap-6 max-w-[95rem] w-full">
           <svg

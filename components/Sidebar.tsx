@@ -1,5 +1,4 @@
 import Image from "next/image";
-import NewsletterSignUp from "./NewsletterSignUp";
 import PopularArticles from "./PopularArticles";
 import { Button } from "./ui/button";
 import magazineCover from "@/public/images/homepage/magazine-cover.jpg";
@@ -19,7 +18,6 @@ export default function Sidebar() {
       <div className="bg-[#f8f8f8] p-[1.88rem] mt-16">
         <h3 className="uppercase font-semibold mb-2">Newsletter</h3>
         <p className="heading3-title mb-4">Design News to your Inbox</p>
-        <NewsletterSignUp />
       </div>
     </aside>
   );
