@@ -116,7 +116,7 @@ const Contactusform = () => {
                   <div className="mx-auto max-w-screen-md px-4 py-8 lg:py-8">
                     <img
                       className="h-full w-fit "
-                      src="/logos/FyrreMagazineLogo-Black.svg"
+                      src="/logos/FyrreMagazineLogo-White.svg"
                       alt="logo"
                     />
                     <p className="my-8 text-center font-light text-gray-500 dark:text-gray-400 sm:text-xl lg:mb-16">
