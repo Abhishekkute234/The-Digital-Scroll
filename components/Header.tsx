@@ -34,6 +34,31 @@ export default function Header() {
               <rect y="12" width="25" height="4" fill="black" />
             </svg>
           </SheetTrigger>
+          <SheetContent
+            side="top"
+            className="w-full pt-14"
+            aria-label="Menu Toggle"
+          >
+            <nav
+              className="flex flex-col flex-1 justify-end gap-6"
+              aria-labelledby="mobile-nav"
+            >
+              {menuLinks.map((menuItem, index) => (
+                <Link key={index} href={menuItem.href}>
+                  {menuItem.label}
+                </Link>
+              ))}
+              <svg
+                width="15"
+                height="1"
+                viewBox="0 0 15 1"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="15" height="1" fill="black" />
+              </svg>
+            </nav>
+          </SheetContent>
         </Sheet>
         <nav
           className="flex-1 items-center justify-end gap-6 hidden md:flex"
@@ -44,15 +69,6 @@ export default function Header() {
               {menuItem.label}
             </Link>
           ))}
-          <svg
-            width="15"
-            height="1"
-            viewBox="0 0 15 1"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect width="15" height="1" fill="black" />
-          </svg>
         </nav>
       </div>
       <hr className="border-black border-t-0 border mt-4" />
