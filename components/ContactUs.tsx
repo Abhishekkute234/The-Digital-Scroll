@@ -30,7 +30,7 @@ const Contactusform = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
