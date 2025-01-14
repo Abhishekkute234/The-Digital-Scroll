@@ -15,7 +15,7 @@ const SignIn = () => {
           className="text-sm font-medium md:hidden"
           onClick={() => setIsOpen(true)}
         >
-          Contact Us
+          SignIn
         </button>
         {/* Desktop View Button */}
         <button
