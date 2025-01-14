@@ -16,6 +16,10 @@ const menu: MenuItem[] = [
     href: "/authors",
     label: "Authors",
   },
+  {
+    href: "/create",
+    label: "Create",
+  },
 ];
 
 export default menu;

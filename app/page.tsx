@@ -36,7 +36,7 @@ export default function Home() {
         url="/podcasts"
         linkText="All episodes"
       >
-        Podcast
+        Blogs
       </Subheading>
 
       <Suspense fallback={<LatestPodcastsLoading />}>
