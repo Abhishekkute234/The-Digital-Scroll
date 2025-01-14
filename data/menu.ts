@@ -12,10 +12,7 @@ const menu: MenuItem[] = [
     href: "/podcasts",
     label: "Podcasts",
   },
-  {
-    href: "/authors",
-    label: "Authors",
-  },
+
   {
     href: "/create",
     label: "Create",
