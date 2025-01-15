@@ -14,8 +14,10 @@ const AuthModal = () => {
       // Create OAuth2 session
       await account.createOAuth2Session(
         "google" as OAuthProvider,
-        "https://the-digital-scroll.vercel.app/", // Success redirect URL
-        "https://the-digital-scroll.vercel.app/faliure"
+        // "https://the-digital-scroll.vercel.app/", // Success redirect URL
+        // "https://the-digital-scroll.vercel.app/faliure"
+        "https://http://localhost:3000/",
+        "https://http://localhost:3000/fail"
       );
     } catch (error) {
       console.error("OAuth2 session creation failed:", error);
@@ -30,8 +32,10 @@ const AuthModal = () => {
       // Create OAuth2 session for GitHub
       await account.createOAuth2Session(
         "github" as OAuthProvider,
-        "https://the-digital-scroll.vercel.app/", // Success redirect URL
-        "https://the-digital-scroll.vercel.app/faliure"
+        // "https://the-digital-scroll.vercel.app/", // Success redirect URL
+        // "https://the-digital-scroll.vercel.app/faliure"
+        "https://http://localhost:3000/",
+        "https://http://localhost:3000/fail"
       );
     } catch (error) {
       console.error("GitHub auth error:", error);
@@ -43,24 +47,25 @@ const AuthModal = () => {
 
   return (
     <>
-      {/* Trigger Button */}
-      <div className="flex items-center space-x-4">
-        {/* Mobile View Button */}
-        <button
-          type="button"
-          className="text-sm font-medium md:hidden"
-          onClick={() => setIsOpen(true)}
-        >
-          SignIn
-        </button>
-        {/* Desktop View Button */}
-        <button
-          type="button"
-          className="hidden text-sm font-medium md:block"
-          onClick={() => setIsOpen(true)}
-        >
-          SignIn
-        </button>
+      <div className=" sm:static sm:inset-auto sm:pr-0 md:ml-2">
+        <div className="  md:hidden">
+          <button
+            type="button"
+            className="text-15px font-bold"
+            onClick={() => setIsOpen(true)}
+          >
+            Sign In
+          </button>
+        </div>
+        <div className="hidden md:block  ">
+          <button
+            type="button"
+            className="text-15px space-links font-Bold"
+            onClick={() => setIsOpen(true)}
+          >
+            <span className=" mr-3 ">Sign In</span>
+          </button>
+        </div>
       </div>
 
       {/* Modal */}

@@ -62,7 +62,7 @@ const Contactusform = () => {
 
   return (
     <>
-      <div className=" sm:static sm:inset-auto sm:pr-0 md:ml-6">
+      <div className=" sm:static sm:inset-auto sm:pr-0 md:ml-2">
         <div className="  md:hidden">
           <button
             type="button"
@@ -75,32 +75,16 @@ const Contactusform = () => {
         <div className="hidden md:block  ">
           <button
             type="button"
-            className="text-15px space-links font-medium"
+            className="text-15px space-links font-Bold"
             onClick={() => setIsOpen(true)}
           >
-            <span className=" mr-3 ">Contact Us</span>
+            <span>Contact us</span>
           </button>
         </div>
       </div>
 
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog
-          as="div"
-          className="relative z-50"
-          onClose={() => setIsOpen(false)}
-        >
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
-          </Transition.Child>
-
+        <Dialog as="div" onClose={() => setIsOpen(false)}>
           <div className="fixed inset-0 overflow-y-auto">
             <div className="flex min-h-full items-center justify-center p-4 text-center">
               <Transition.Child

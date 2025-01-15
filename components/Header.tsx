@@ -59,23 +59,9 @@ export default function Header() {
                 </Link>
               ))}
 
-              <div onClick={handleClose}>
-                <button className="p-[3px] relative w-full">
-                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
-                  <div className="px-8 py-2 bg-black rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent">
-                    <AuthModal />
-                  </div>
-                </button>
-              </div>
+              <AuthModal />
 
-              <div onClick={handleClose}>
-                <button className="p-[1px] relative w-full">
-                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
-                  <div className="px-4 py-2 bg-black rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent">
-                    <Contactusform />
-                  </div>
-                </button>
-              </div>
+              <Contactusform />
             </nav>
           </SheetContent>
         </Sheet>
@@ -88,18 +74,10 @@ export default function Header() {
               {menuItem.label}
             </Link>
           ))}
-          <button className="p-[3px] relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
-            <div className="px-8 py-2 bg-black rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent">
-              <AuthModal />
-            </div>
-          </button>
-          <button className="p-[3px] relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
-            <div className="px-8 py-2 bg-black rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent">
-              <Contactusform />
-            </div>
-          </button>
+
+          <Contactusform />
+
+          <AuthModal />
         </nav>
       </div>
       <hr className="border-black border-t-0 border mt-4" />
