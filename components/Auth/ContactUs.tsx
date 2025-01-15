@@ -78,7 +78,7 @@ const Contactusform = () => {
             className="text-15px space-links font-medium"
             onClick={() => setIsOpen(true)}
           >
-            <span className=" mr-3 ml-3">Contact Us</span>
+            <span className=" mr-3 ">Contact Us</span>
           </button>
         </div>
       </div>

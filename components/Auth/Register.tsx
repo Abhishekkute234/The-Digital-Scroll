@@ -1,10 +1,45 @@
 "use client";
 import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment, useState } from "react";
+import { account } from "@/lib/appwrite";
+import { OAuthProvider } from "appwrite";
 
 const AuthModal = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showSignIn, setShowSignIn] = useState(true);
+  const [loading, setLoading] = useState(false);
+
+  const handleGoogleAuth = async () => {
+    try {
+      setLoading(true);
+      // Create OAuth2 session
+      await account.createOAuth2Session(
+        OAuthProvider.Google,
+        "http://localhost:3000/success", // Success redirect URL
+        "http://localhost:3000/failure" // Failure redirect URL
+      );
+    } catch (error) {
+      console.error("OAuth2 session creation failed:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGitHubAuth = async () => {
+    try {
+      setLoading(true);
+      // Create OAuth2 session for GitHub
+      await account.createOAuth2Session(
+        OAuthProvider.Github,
+        "http://localhost:3000/auth-callback",
+        "http://localhost:3000/auth-callback-failure"
+      );
+    } catch (error) {
+      console.error("GitHub auth error:", error);
+      alert("Authentication failed. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -67,19 +102,16 @@ const AuthModal = () => {
                     alt="logo"
                   />
                   <p className="my-6 text-center text-base font-bold text-gray-500 sm:text-lg lg:mb-8">
-                    {showSignIn
-                      ? "Sign in to access your account"
-                      : "Sign up to create an account"}
+                    Sign in to access your account
                   </p>
                 </div>
 
-                {/* Conditional Form Content */}
+                {/* Auth Buttons */}
                 <div className="flex flex-col gap-y-4">
                   <button
-                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-black px-5 py-3 text-sm font-bold text-white hover:bg-gray-800 focus:ring-4 focus:ring-primary-300"
-                    onClick={() =>
-                      alert(showSignIn ? "Google SignIn" : "Google SignUp")
-                    }
+                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-black px-5 py-3 text-sm font-bold text-white hover:bg-gray-800 focus:ring-4 focus:ring-primary-300 disabled:opacity-50"
+                    onClick={handleGoogleAuth}
+                    disabled={loading}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -104,10 +136,14 @@ const AuthModal = () => {
                       />
                       <path fill="none" d="M0 0h48v48H0z" />
                     </svg>
-                    {showSignIn ? "Google SignIn" : "Google SignUp"}
+                    {loading ? "Loading..." : "Google SignIn"}
                   </button>
 
-                  <button className="flex w-full items-center justify-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-bold text-black hover:bg-gray-300 focus:ring-4 focus:ring-primary-300 border border-black">
+                  <button
+                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-bold text-black hover:bg-gray-300 focus:ring-4 focus:ring-primary-300 border border-black disabled:opacity-50"
+                    onClick={handleGitHubAuth}
+                    disabled={loading}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 16 16"
@@ -118,21 +154,9 @@ const AuthModal = () => {
                         d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.54 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.67.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
                       />
                     </svg>
-                    {showSignIn ? "GitHub SignIn" : "GitHub SignUp"}
+                    {loading ? "Loading..." : "GitHub SignIn"}
                   </button>
                 </div>
-
-                <p className="mt-6 text-center text-sm text-gray-600">
-                  {showSignIn
-                    ? "Don't have an account?"
-                    : "Already have an account?"}{" "}
-                  <button
-                    className="text-blue-600 hover:underline"
-                    onClick={() => setShowSignIn(!showSignIn)}
-                  >
-                    {showSignIn ? "Sign up" : "Sign in"}
-                  </button>
-                </p>
               </Dialog.Panel>
             </Transition.Child>
           </div>
