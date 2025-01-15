@@ -1,3 +1,5 @@
+"use client";
+import { useState } from "react";
 import Link from "next/link";
 import menuLinks from "@/data/menu";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
@@ -5,11 +7,17 @@ import Contactusform from "./Auth/ContactUs";
 import AuthModal from "./Auth/Register";
 
 export default function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
   return (
     <header className="flex flex-col justify-between max-w-[95rem] w-full mx-auto px-4 md:pt-8 pt-4 lg:pb-4 md:pb-4 sm:pb-2 xs:pb-2">
       <div className="flex">
         <div className="flex flex-1">
-          <Link href="/" aria-label="Return to homepage">
+          <Link href="/" aria-label="Return to homepage" onClick={handleClose}>
             <img
               className="h-full w-fit"
               src="/logos/FyrreMagazineLogo-Black.svg"
@@ -17,7 +25,7 @@ export default function Header() {
             />
           </Link>
         </div>
-        <Sheet>
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger aria-labelledby="button-label">
             <span id="button-label" hidden>
               Menu
@@ -46,25 +54,28 @@ export default function Header() {
               aria-labelledby="mobile-nav"
             >
               {menuLinks.map((menuItem, index) => (
-                <Link key={index} href={menuItem.href}>
+                <Link key={index} href={menuItem.href} onClick={handleClose}>
                   {menuItem.label}
                 </Link>
               ))}
 
-              <button className="p-[3px] relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
-                <div className="px-8 py-2  bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
-                  <AuthModal />
-                </div>
-              </button>
-              <button className="p-[1px] relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
-                <div className="px-4 py-2  bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
-                  <Contactusform />
-                </div>
-              </button>
+              <div onClick={handleClose}>
+                <button className="p-[3px] relative w-full">
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
+                  <div className="px-8 py-2 bg-black rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent">
+                    <AuthModal />
+                  </div>
+                </button>
+              </div>
 
-              <rect width="15" height="1" fill="black" />
+              <div onClick={handleClose}>
+                <button className="p-[1px] relative w-full">
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
+                  <div className="px-4 py-2 bg-black rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent">
+                    <Contactusform />
+                  </div>
+                </button>
+              </div>
             </nav>
           </SheetContent>
         </Sheet>
@@ -79,13 +90,13 @@ export default function Header() {
           ))}
           <button className="p-[3px] relative">
             <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
-            <div className="px-8 py-2  bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
+            <div className="px-8 py-2 bg-black rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent">
               <AuthModal />
             </div>
           </button>
           <button className="p-[3px] relative">
             <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
-            <div className="px-8 py-2  bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
+            <div className="px-8 py-2 bg-black rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent">
               <Contactusform />
             </div>
           </button>
