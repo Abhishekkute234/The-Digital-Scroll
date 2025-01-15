@@ -13,9 +13,9 @@ const AuthModal = () => {
       setLoading(true);
       // Create OAuth2 session
       await account.createOAuth2Session(
-        "google",
+        "google" as OAuthProvider,
         "http://localhost:3000/success", // Success redirect URL
-        "http://localhost:3000/failure" // Failure redirect URL
+        "http://localhost:3000/failure"
       );
     } catch (error) {
       console.error("OAuth2 session creation failed:", error);
@@ -29,7 +29,7 @@ const AuthModal = () => {
       setLoading(true);
       // Create OAuth2 session for GitHub
       await account.createOAuth2Session(
-        "github",
+        "github" as OAuthProvider,
         "http://localhost:3000/auth-callback",
         "http://localhost:3000/auth-callback-failure"
       );
