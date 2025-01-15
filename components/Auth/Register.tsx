@@ -14,8 +14,8 @@ const AuthModal = () => {
       // Create OAuth2 session
       await account.createOAuth2Session(
         "google" as OAuthProvider,
-        "the-digital-scroll.vercel.app", // Success redirect URL
-        "http://localhost:3000/failure"
+        "https://the-digital-scroll.vercel.app/", // Success redirect URL
+        "https://the-digital-scroll.vercel.app/faliure"
       );
     } catch (error) {
       console.error("OAuth2 session creation failed:", error);
@@ -30,8 +30,8 @@ const AuthModal = () => {
       // Create OAuth2 session for GitHub
       await account.createOAuth2Session(
         "github" as OAuthProvider,
-        "the-digital-scroll.vercel.app",
-        "http://localhost:3000/auth-callback-failure"
+        "https://the-digital-scroll.vercel.app/", // Success redirect URL
+        "https://the-digital-scroll.vercel.app/faliure"
       );
     } catch (error) {
       console.error("GitHub auth error:", error);
