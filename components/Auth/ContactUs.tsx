@@ -66,7 +66,7 @@ const Contactusform = () => {
         <div className="  md:hidden">
           <button
             type="button"
-            className="text-15px font-medium"
+            className="text-15px font-bold"
             onClick={() => setIsOpen(true)}
           >
             Contact Us
@@ -114,12 +114,14 @@ const Contactusform = () => {
               >
                 <Dialog.Panel className="w-full max-w-md overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <div className="mx-auto max-w-screen-md px-4 py-8 lg:py-8">
-                    <img
-                      className="h-full w-fit "
-                      src="/logos/FyrreMagazineLogo-White.svg"
-                      alt="logo"
-                    />
-                    <p className="my-8 text-center font-light text-gray-500 dark:text-gray-400 sm:text-xl lg:mb-16">
+                    <div className="flex flex-col items-center">
+                      <img
+                        className="h-16 w-auto"
+                        src="/logos/FyrreMagazineLogo-White.svg"
+                        alt="logo"
+                      />
+                    </div>
+                    <p className="my-8 text-center font-bold text-gray-500 dark:text-gray-400 sm:text-xl lg:mb-16">
                       Contact us now? Want to send us a feedback?
                     </p>
                     <form className="space-y-8" onSubmit={handleSubmit}>
