@@ -16,8 +16,8 @@ const AuthModal = () => {
         "google" as OAuthProvider,
         "https://the-digital-scroll.vercel.app/", // Success redirect URL
         "https://the-digital-scroll.vercel.app/faliure"
-        // "https://http://localhost:3000/",
-        // "https://http://localhost:3000/fail"
+        // "localhost:3000",
+        // "localhost:3000/fail"
       );
     } catch (error) {
       console.error("OAuth2 session creation failed:", error);
@@ -34,8 +34,8 @@ const AuthModal = () => {
         "github" as OAuthProvider,
         "https://the-digital-scroll.vercel.app/", // Success redirect URL
         "https://the-digital-scroll.vercel.app/faliure"
-        // "https://http://localhost:3000/",
-        // "https://http://localhost:3000/fail"
+        // "localhost:3000",
+        // "localhost:3000/fail"
       );
     } catch (error) {
       console.error("GitHub auth error:", error);
