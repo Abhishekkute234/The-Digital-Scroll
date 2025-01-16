@@ -31,6 +31,7 @@
     "react-dom": "latest",
     "react-element-to-jsx-string": "^15.0.0",
     "react-hook-form": "^7.48.2",
+    "react-hot-toast": "^2.5.1",
     "shadcn-ui": "^0.4.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",

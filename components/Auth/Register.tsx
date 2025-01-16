@@ -3,10 +3,12 @@ import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment, useState } from "react";
 import { account } from "@/lib/appwrite";
 import { OAuthProvider } from "appwrite";
+import SuccessMessage from "./SuccessMessage";
 
 const AuthModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handleGoogleAuth = async () => {
     try {
@@ -19,6 +21,10 @@ const AuthModal = () => {
         // "localhost:3000",
         // "localhost:3000/fail"
       );
+      setShowSuccessMessage(true);
+
+      // Hide the message after 3 seconds
+      setTimeout(() => setShowSuccessMessage(false), 5000);
     } catch (error) {
       console.error("OAuth2 session creation failed:", error);
     } finally {
@@ -34,9 +40,13 @@ const AuthModal = () => {
         "github" as OAuthProvider,
         "https://the-digital-scroll.vercel.app/", // Success redirect URL
         "https://the-digital-scroll.vercel.app/faliure"
-        // "localhost:3000",
-        // "localhost:3000/fail"
       );
+
+      // If successful, show a success message
+      setShowSuccessMessage(true);
+
+      // Hide the message after 3 seconds
+      setTimeout(() => setShowSuccessMessage(false), 5000);
     } catch (error) {
       console.error("GitHub auth error:", error);
       alert("Authentication failed. Please try again.");
@@ -143,7 +153,9 @@ const AuthModal = () => {
                     </svg>
                     {loading ? "Loading..." : "Google SignIn"}
                   </button>
-
+                  {showSuccessMessage && (
+                    <SuccessMessage message="✅ Login successful!" />
+                  )}
                   <button
                     className="flex w-full items-center justify-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-bold text-black hover:bg-gray-300 focus:ring-4 focus:ring-primary-300 border border-black disabled:opacity-50"
                     onClick={handleGitHubAuth}
@@ -161,6 +173,9 @@ const AuthModal = () => {
                     </svg>
                     {loading ? "Loading..." : "GitHub SignIn"}
                   </button>
+                  {showSuccessMessage && (
+                    <SuccessMessage message="✅ Login successful!" />
+                  )}
                 </div>
               </Dialog.Panel>
             </Transition.Child>
