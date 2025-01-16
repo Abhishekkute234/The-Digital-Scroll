@@ -69,7 +69,7 @@ const Contactusform = () => {
             className="text-15px font-bold"
             onClick={() => setIsOpen(true)}
           >
-            Contact Us
+            Contact us
           </button>
         </div>
         <div className="hidden md:block  ">

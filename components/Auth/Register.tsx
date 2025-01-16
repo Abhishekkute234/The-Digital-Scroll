@@ -54,14 +54,14 @@ const AuthModal = () => {
         className="text-15px font-bold sm:hidden"
         onClick={() => setIsOpen(true)}
       >
-        Sign In
+        Sign in
       </button>
       <button
         type="button"
         className="hidden sm:inline-block text-15px font-bold"
         onClick={() => setIsOpen(true)}
       >
-        Sign In
+        Sign in
       </button>
 
       {/* Modal */}
