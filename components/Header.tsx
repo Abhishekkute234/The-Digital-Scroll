@@ -4,7 +4,7 @@ import Link from "next/link";
 import { account } from "@/lib/appwrite";
 import { Models } from "appwrite";
 import menuLinks from "@/data/menu";
-import { User, LogOut } from "lucide-react";
+import { User, LogOut, Menu } from "lucide-react";
 import Contactusform from "./Auth/ContactUs";
 import AuthModal from "./Auth/Register";
 
@@ -13,6 +13,8 @@ export default function Header() {
     null
   );
   const [loading, setLoading] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for menu toggle
+  const [isProfileOpen, setIsProfileOpen] = useState(false); // State for profile dropdown toggle
 
   useEffect(() => {
     checkUserStatus();
@@ -64,38 +66,73 @@ export default function Header() {
 
   return (
     <header className="flex flex-col justify-between max-w-[95rem] w-full mx-auto px-4 md:pt-8 pt-4 lg:pb-4 md:pb-4 sm:pb-2 xs:pb-2">
-      <div className="flex">
+      <div className="flex items-center justify-between">
         <div className="flex flex-1">
           <Link href="/" aria-label="Return to homepage">
             <img
-              className="h-16 w-auto"
+              className="h-12 w-auto"
               src="/logos/FyrreMagazineLogo-White.svg"
               alt="logo"
             />
           </Link>
         </div>
-        <nav
-          className="flex-1 items-center justify-end gap-6 flex"
-          aria-labelledby="main-nav"
-        >
-          {menuLinks.map((menuItem, index) => (
-            <Link key={index} href={menuItem.href}>
-              {menuItem.label}
-            </Link>
-          ))}
 
-          <Contactusform />
+        <div className="flex items-center space-x-6">
+          {/* Mobile menu button */}
+          <button
+            className="lg:hidden text-gray-600"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <Menu className="w-6 h-6" />
+          </button>
 
-          {loading ? (
-            <div className="flex justify-center">
-              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-gray-900" />
-            </div>
-          ) : user ? (
-            <UserProfileSection />
-          ) : (
-            <AuthModal />
-          )}
-        </nav>
+          <nav
+            className={`lg:flex gap-6 items-center ${
+              isMenuOpen ? "flex" : "hidden"
+            } lg:block`}
+            aria-labelledby="main-nav"
+          >
+            {menuLinks.map((menuItem, index) => (
+              <Link key={index} href={menuItem.href}>
+                {menuItem.label}
+              </Link>
+            ))}
+
+            <Contactusform />
+
+            {loading ? (
+              <div className="flex justify-center">
+                <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-gray-900" />
+              </div>
+            ) : user ? (
+              <div className="lg:flex lg:items-center">
+                {/* Toggle button for profile dropdown on mobile */}
+                <button
+                  className="lg:hidden text-gray-600"
+                  onClick={() => setIsProfileOpen(!isProfileOpen)}
+                >
+                  <User className="w-6 h-6" />
+                </button>
+
+                {/* Mobile Profile Dropdown */}
+                <div
+                  className={`${
+                    isProfileOpen ? "block" : "hidden"
+                  } transition-all transform duration-300 ease-out opacity-100 translate-y-0 absolute top-16 right-4 bg-white shadow-lg rounded-lg p-4 z-10`}
+                >
+                  <UserProfileSection />
+                </div>
+
+                {/* Desktop Profile Section */}
+                <div className="hidden lg:block">
+                  <UserProfileSection />
+                </div>
+              </div>
+            ) : (
+              <AuthModal />
+            )}
+          </nav>
+        </div>
       </div>
       <hr className="border-black border-t-0 border mt-4" />
     </header>
