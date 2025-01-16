@@ -2,6 +2,7 @@ import AuthorsList from "@/components/AuthorList";
 import PageTitle from "@/components/PageTitle";
 import { Suspense } from "react";
 import Loading from "./loading";
+import SidebarHeader from "@/components/Header";
 
 export const metadata = {
   title: "Authors  | Fyrre Magazine",

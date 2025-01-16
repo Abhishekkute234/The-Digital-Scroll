@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { account } from "@/lib/appwrite";
@@ -88,7 +89,7 @@ export default function Header() {
 
           <nav
             className={`lg:flex gap-6 items-center ${
-              isMenuOpen ? "flex" : "hidden"
+              isMenuOpen ? "flex flex-col space-y-2" : "hidden"
             } lg:block`}
             aria-labelledby="main-nav"
           >
@@ -106,25 +107,17 @@ export default function Header() {
               </div>
             ) : user ? (
               <div className="lg:flex lg:items-center">
-                {/* Toggle button for profile dropdown on mobile */}
                 <button
                   className="lg:hidden text-gray-600"
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
                 >
                   <User className="w-6 h-6" />
                 </button>
-
-                {/* Mobile Profile Dropdown */}
                 <div
                   className={`${
                     isProfileOpen ? "block" : "hidden"
-                  } transition-all transform duration-300 ease-out opacity-100 translate-y-0 absolute top-16 right-4 bg-white shadow-lg rounded-lg p-4 z-10`}
+                  } absolute top-16 right-4 bg-white shadow-lg rounded-lg p-4 z-10`}
                 >
-                  <UserProfileSection />
-                </div>
-
-                {/* Desktop Profile Section */}
-                <div className="hidden lg:block">
                   <UserProfileSection />
                 </div>
               </div>
