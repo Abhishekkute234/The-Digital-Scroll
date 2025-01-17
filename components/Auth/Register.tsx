@@ -4,7 +4,6 @@ import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment, useState } from "react";
 import { account } from "@/lib/appwrite";
 import { OAuthProvider } from "appwrite";
-import SuccessMessage from "./SuccessMessage";
 
 const AuthModal = () => {
   const [isOpen, setIsOpen] = useState(false);
